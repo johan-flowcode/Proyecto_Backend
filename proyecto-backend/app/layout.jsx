@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 //import Provider from "@components/Provider";
 
 export const metadata = {
-  title: "Artify",
+  title: "Artcopy",
   description: "Discover and Share Art",
 };
 
