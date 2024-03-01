@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import "@styles/Register.scss"
 import { FcGoogle } from "react-icons/fc"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,16 @@ const Register = () => {
     });
   };
 
+  //console.log(formData)
+
   const router = useRouter();
+
+
+  const [passwordMatch, setPasswordMatch] = useState(true);
+
+  useEffect(() => {
+    setPasswordMatch(formData.password === formData.confirmPassword);
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +52,7 @@ const Register = () => {
       });
 
       if (response.ok) {
-        router.push("/login");
+        router.push("/");
       }
     } catch (err) {
       console.log("Registration failed", err.message);
@@ -62,6 +72,10 @@ const Register = () => {
 
           <input placeholder="Confirm Password" type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
 
+          {!passwordMatch && (
+            <p style={{ color: "red" }}>Passwords are not matched!</p>
+          )}
+
           <input id="image" type="file" name="profileImage" onChange={handleChange} accept="image" style={{ display: "none" }} required />
 
           <label htmlFor="image">
@@ -77,10 +91,10 @@ const Register = () => {
             />
           )}
 
-          <button type="submit" disabled="{!passwordMatch}">Register</button>
+          <button type="submit" disabled={!passwordMatch}>Register</button>
         </form>
 
-        <button type="button" onClick={""} className="google">
+        <button type="button" className="google">
           <p>Login with Google</p>
           <FcGoogle />
         </button>
@@ -89,6 +103,7 @@ const Register = () => {
       </div>
     </div>
   )
+
 }
 
 export default Register
