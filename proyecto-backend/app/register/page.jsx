@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { signIn } from "next-auth/react";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -52,11 +53,14 @@ const Register = () => {
       });
 
       if (response.ok) {
-        router.push("/");
+        router.push("/login");
       }
     } catch (err) {
       console.log("Registration failed", err.message);
     }
+  };
+  const loginWithGoogle = () => {
+    signIn("google", { callbackUrl: "/" });
   };
 
   return (
@@ -94,7 +98,7 @@ const Register = () => {
           <button type="submit" disabled={!passwordMatch}>Register</button>
         </form>
 
-        <button type="button" className="google">
+        <button type="button" onClick={loginWithGoogle} className="google">
           <p>Login with Google</p>
           <FcGoogle />
         </button>

@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-//import Provider from "@components/Provider";
+import Provider from "@components/Provider";
 
 export const metadata = {
   title: "Artcopy",
@@ -10,9 +10,9 @@ const layout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-       
-          <main>{children}</main>
-       
+       <Provider>
+        <main>{children}</main>
+       </Provider>
       </body>
     </html>
   );
