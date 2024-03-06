@@ -25,7 +25,7 @@ export async function POST (req) {
       const bytes = await file.arrayBuffer()
       const buffer = Buffer.from(bytes)
   
-      const profileImagePath=`/Users/stephanievalderramacarmona/Library/Mobile Documents/com~apple~CloudDocs/Documents/Johan_Flowcode/fullstack_factoriaF5/repositorios_github/Proyecto_Backend/proyecto-backend/public/upload${file.name}`
+      const profileImagePath=`/Users/stephanievalderramacarmona/Library/Mobile Documents/com~apple~CloudDocs/Documents/Johan_Flowcode/fullstack_factoriaF5/repositorios_github/Proyecto_Backend/proyecto-backend/public/upload/${file.name}`
       await writeFile(profileImagePath, buffer)
   
       console.log(`open ${profileImagePath} to see the uploaded files`)
